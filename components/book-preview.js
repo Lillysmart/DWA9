@@ -221,7 +221,13 @@ export class BookPreviews extends HTMLElement {
     this.updateBookPreviews();
   }
 
+  /**
+   * Create a book preview element from the book data.
+   * @param {Object} bookData - The data of the book to create a preview for.
+   * @returns {HTMLButtonElement} - The created book preview element.
+   */
   createBookPreview(bookData) {
+    // Create and configure the book preview element
     const element = document.createElement("button");
     element.classList = "preview";
     element.setAttribute("data-preview", bookData.id);
@@ -236,6 +242,12 @@ export class BookPreviews extends HTMLElement {
 
     return element;
   }
+
+  
+  /**
+   * Update the book previews displayed in the component.
+   * Clears the existing content and adds new book previews based on page and data.
+   */
   updateBookPreviews() {
     const dataListItems = this.shadowRoot.querySelector("[data-list-items]");
     dataListItems.innerHTML = ""; // Clear the existing content
