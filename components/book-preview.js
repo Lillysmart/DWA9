@@ -61,16 +61,16 @@ import { authors, books, BOOKS_PER_PAGE } from "../data.js";
 
 //import { allHtmlElements } from "./Modules/helpers.js"
 export class BookPreviews extends HTMLElement {
-    constructor() {
-      super();
-      this.attachShadow({ mode: "open" });
-      this.matches = [];
-      this.page = 1;
-      this.initHTML();
-    }
-  
-    initHTML() {
-      this.shadowRoot.innerHTML = `
+  constructor() {
+    super();
+    this.attachShadow({ mode: "open" });
+    this.matches = [];
+    this.page = 1;
+    this.initHTML();
+  }
+
+  initHTML() {
+    this.shadowRoot.innerHTML = `
         <style>
      
 .preview {
@@ -215,54 +215,59 @@ export class BookPreviews extends HTMLElement {
        
         <div class="list__items" data-list-items></div>
       `;
-    }
-  
-    connectedCallback() {
-      this.updateBookPreviews();
-    }
-  
-    createBookPreview(bookData) {
-      const element = document.createElement('button');
-      element.classList = 'preview';
-      element.setAttribute('data-preview', bookData.id);
-  
-      element.innerHTML = `
+  }
+
+  connectedCallback() {
+    this.updateBookPreviews();
+  }
+
+  createBookPreview(bookData) {
+    const element = document.createElement("button");
+    element.classList = "preview";
+    element.setAttribute("data-preview", bookData.id);
+
+    element.innerHTML = `
         <img class="preview__image" src="${bookData.image}" />
         <div class="preview__info">
           <h3 class="preview__title">${bookData.title}</h3>
           <div class="preview__author">${authors[bookData.author]}</div>
         </div>
       `;
-  
-      return element;
-    }
-    updateBookPreviews() {
-        const dataListItems = this.shadowRoot.querySelector('[data-list-items]');
-        dataListItems.innerHTML = ''; // Clear the existing content
 
-        const starting = document.createDocumentFragment();
-
-        for (const bookData of this.matches.slice(
-            (this.page - 1) * BOOKS_PER_PAGE,
-            this.page * BOOKS_PER_PAGE
-        )) {
-            const bookPreview = this.createBookPreview(bookData);
-            starting.appendChild(bookPreview);
-        }
-
-        dataListItems.appendChild(starting);
-    }
-  
-    set Matches(newMatches) {
-      this.matches = newMatches;
-      this.updateBookPreviews();
-    }
-  
-    set Page(newPage) {
-      this.page = newPage;
-      this.updateBookPreviews();
-    }
+    return element;
   }
+  updateBookPreviews() {
+    const dataListItems = this.shadowRoot.querySelector("[data-list-items]");
+    dataListItems.innerHTML = ""; // Clear the existing content
 
-  customElements.define("book-previews", BookPreviews);
-  
+    const starting = document.createDocumentFragment();
+
+    for (const bookData of this.matches.slice(
+      (this.page - 1) * BOOKS_PER_PAGE,
+      this.page * BOOKS_PER_PAGE
+    )) {
+      const bookPreview = this.createBookPreview(bookData);
+      starting.appendChild(bookPreview);
+    }
+
+    dataListItems.appendChild(starting);
+  }
+  /**
+   * Set the book data to be displayed in the component.
+   * @param {Array} newMatches - The array of book data to display.
+   */
+  set Matches(newMatches) {
+    this.matches = newMatches;
+    this.updateBookPreviews();
+  }
+  /**
+   * Set the current page of book previews to display.
+   * @param {number} newPage - The page number to display.
+   */
+  set Page(newPage) {
+    this.page = newPage;
+    this.updateBookPreviews();
+  }
+}
+
+customElements.define("book-previews", BookPreviews);
