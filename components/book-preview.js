@@ -1,66 +1,17 @@
-//import { authors, books, BOOKS_PER_PAGE } from "../data.js";
-//import { allHtmlElements } from "./helpers.js";
 
-/*const template = document.createElement('template')
-template.innerHTML=`
-<div id="bookPreviewContainer">
-        <button class="preview" data-preview>
-            <img class="preview__image" src="book-image.jpg" />
-            <div class="preview__info">
-                <h3 class="preview__title">Sample Book</h3>
-                <div class="preview__author">Author 1</div>
-            </div>
-        </button>
-    </div>
-`
-console.log(template)
-
-export class BookPreview extends HTMLElement {
-
-    
-    constructor(){
-        super()
-        const shadow = this.attachShadow({mode: "open"})
-        this.innerHTML='hello'
-        shadow.appendChild(template.content.cloneNode(true))
-        this.book = {}
-    }
-
-    connectedCallback(book){
- this.updatedInfo()
-
-    }
-
-
-
-    // Define a method to update the book information.
-    updateBookInfo() {
-        const elements = this.shadowRoot.querySelectorAll('.preview__image, .preview__title, .preview__author');
-        if (elements.length === 3) {
-            elements[0].src = this.book.image || 'book-image.jpg';
-            elements[1].textContent = this.book.title || 'Sample Book';
-            elements[2].textContent = this.book.author ? authors[this.book.author] : 'Author 1';
-        }
-    }
-
-    // Define a setter for the 'book' property to automatically update the information when 'book' is set.
-    set bookData(book) {
-        this.book = book;
-        this.updateBookInfo();
-    }
-}
-
-
-
-
-customElements.define("book-preview", BookPreview)
 
 export default BookPreview*/
 import { authors, books, BOOKS_PER_PAGE } from "../data.js";
-//import {page} from "./scripts.js"
-
-//import { allHtmlElements } from "./Modules/helpers.js"
+/**
+* Custom web component for displaying a list of book previews with pagination.
+* @class
+*/
 export class BookPreviews extends HTMLElement {
+
+     /**
+   * Creates an instance of BookPreviews.
+   * Initializes the Shadow DOM and other properties.
+   */
   constructor() {
     super();
     this.attachShadow({ mode: "open" });
@@ -68,7 +19,9 @@ export class BookPreviews extends HTMLElement {
     this.page = 1;
     this.initHTML();
   }
-
+/**
+   * Initialize the HTML structure and styles of the component.
+   */
   initHTML() {
     this.shadowRoot.innerHTML = `
         <style>
@@ -216,7 +169,10 @@ export class BookPreviews extends HTMLElement {
         <div class="list__items" data-list-items></div>
       `;
   }
-
+/**
+   * Called when the component is connected to the DOM.
+   * It updates the book previews based on the provided data.
+   */
   connectedCallback() {
     this.updateBookPreviews();
   }
@@ -283,3 +239,63 @@ export class BookPreviews extends HTMLElement {
 }
 
 customElements.define("book-previews", BookPreviews);
+
+
+//old code
+
+//import { authors, books, BOOKS_PER_PAGE } from "../data.js";
+//import { allHtmlElements } from "./helpers.js";
+
+/*const template = document.createElement('template')
+template.innerHTML=`
+<div id="bookPreviewContainer">
+        <button class="preview" data-preview>
+            <img class="preview__image" src="book-image.jpg" />
+            <div class="preview__info">
+                <h3 class="preview__title">Sample Book</h3>
+                <div class="preview__author">Author 1</div>
+            </div>
+        </button>
+    </div>
+`
+console.log(template)
+
+export class BookPreview extends HTMLElement {
+
+    
+    constructor(){
+        super()
+        const shadow = this.attachShadow({mode: "open"})
+        this.innerHTML='hello'
+        shadow.appendChild(template.content.cloneNode(true))
+        this.book = {}
+    }
+
+    connectedCallback(book){
+ this.updatedInfo()
+
+    }
+
+
+
+    // Define a method to update the book information.
+    updateBookInfo() {
+        const elements = this.shadowRoot.querySelectorAll('.preview__image, .preview__title, .preview__author');
+        if (elements.length === 3) {
+            elements[0].src = this.book.image || 'book-image.jpg';
+            elements[1].textContent = this.book.title || 'Sample Book';
+            elements[2].textContent = this.book.author ? authors[this.book.author] : 'Author 1';
+        }
+    }
+
+    // Define a setter for the 'book' property to automatically update the information when 'book' is set.
+    set bookData(book) {
+        this.book = book;
+        this.updateBookInfo();
+    }
+}
+
+
+
+
+customElements.define("book-preview", BookPreview)*/
