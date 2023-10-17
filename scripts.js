@@ -1,12 +1,17 @@
 import { books, authors, genres, BOOKS_PER_PAGE } from "./data.js";
 import {  generateBookPreviews } from "./Modules/loading.js";
 import { allHtmlElements } from "./Modules/helpers.js";
+import {BookPreviews} from "./components/book-preview.js"
 
 let page = 1;
 let matches = books;
 console.log (books[0])
 
-generateBookPreviews(matches, page-1)
+//generateBookPreviews(matches, page-1)
+const bookPreviews = document.querySelector('#bookPreviews')
+bookPreviews.Matches = books; // Set 'Matches' to book data array
+bookPreviews.Page = 1
+console.log(bookPreviews)
 
 const genreHtml = document.createDocumentFragment();
 const firstGenreElement = document.createElement("option");
