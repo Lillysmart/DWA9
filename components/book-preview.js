@@ -131,6 +131,7 @@ export class BookPreviews extends HTMLElement {
   
 .list {
   padding-bottom: 10rem;
+ 
   } 
   
   .list__message {
@@ -153,16 +154,15 @@ export class BookPreviews extends HTMLElement {
     width: 100%;
   }
   
-@media (min-width: 50rem) {
-    .list__items {
+  @media (min-width: 50rem) {
+    .list__items{
       grid-template-columns: repeat(2, 1fr);
       grid-column-gap: 0.75rem;
       grid-row-gap: 0.75rem;
     }
   }
-  
   @media (min-width: 100rem) {
-    .list__items {
+    .list__items{
       grid-template-columns: repeat(4, 1fr);
       grid-column-gap: 0.75rem;
       grid-row-gap: 0.75rem;
@@ -170,7 +170,7 @@ export class BookPreviews extends HTMLElement {
   }
   
   @media (min-width: 150rem) {
-    .list__items {
+    .list__items{
       grid-template-columns: repeat(8, 1fr);
       grid-column-gap: 0.75rem;
       grid-row-gap: 0.75rem;
@@ -212,7 +212,8 @@ export class BookPreviews extends HTMLElement {
         </style>
        
     
-
+       
+        <div class="list__items" data-list-items></div>
       `;
     }
   
