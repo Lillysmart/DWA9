@@ -1,6 +1,4 @@
 
-
-export default BookPreview*/
 import { authors, books, BOOKS_PER_PAGE } from "../data.js";
 /**
 * Custom web component for displaying a list of book previews with pagination.
